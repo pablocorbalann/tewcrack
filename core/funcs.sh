@@ -1,5 +1,3 @@
-#! bin/bash
-
 # This file is part of tewcrack: github.com/pblcc/tewcrack
 #
 # It's the script that contains all the functions that are used in the 

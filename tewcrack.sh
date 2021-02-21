@@ -1,4 +1,4 @@
-#! bin/bash
+#!/bin/bash
 
 # This file is part of tewcrack: github.com/pblcc/tewcrack
 #
