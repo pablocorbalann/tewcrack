@@ -1,3 +1,5 @@
+#! bin/bash
+
 # This file is part of tewcrack: github.com/pblcc/tewcrack
 #
 # This script displays some information about the script and the

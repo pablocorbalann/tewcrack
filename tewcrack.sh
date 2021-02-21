@@ -1,3 +1,5 @@
+#! bin/bash
+
 # This file is part of tewcrack: github.com/pblcc/tewcrack
 #
 # It's the main script of the application, for more information please
@@ -7,12 +9,13 @@
 # 
 # !Please do not touch the rest of the script
 
-# declare some colors
-RED="\033[0;31m"
-GREEN="\033[0;32m"
-BLUE="\033[0;36m"
-BOLD="\033[1m"
-NC="\033[0;36m"
+# declarate some functions that have to be used
+program_exists() {
+  # Checks if a program exists in the current system. If the program exists
+  # it'll return True, if the computer can't access to the program it'll return 
+  # False. The program to check is $1
+  command -v $1 $> /dev/null
+}
 
 # start of the script
 clear

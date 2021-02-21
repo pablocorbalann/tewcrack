@@ -1,3 +1,5 @@
+#! bin/bash
+
 # This file is part of tewcrack: github.com/pblcc/tewcrack
 #
 # This script prints the title of the app
