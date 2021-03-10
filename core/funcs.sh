@@ -18,9 +18,9 @@ NORMAL="\033[0m"
 
 color_print() {
   if [ -t 1 ]; then
-      echo "${@}${NORMAL}"
+      echo -e "${@}${NORMAL}"
   else
-      echo "${@}" | sed "s/\\\033\[[0-9;]*m//g"
+      echo -e "${@}" | sed "s/\\\033\[[0-9;]*m//g"
   fi
 }
 
@@ -56,4 +56,20 @@ program_exists() {
   # it'll return True, if the computer can't access to the program it'll return 
   # False. The program to check is $1
   command -v $1 $> /dev/null
+}
+
+print_option() {
+  # This function prints an option formatted to then read it.
+  # using two parameters: [index] name
+  local index="$BOLD$PURPLE[$NORMAL$BOLD$1$PURPLE]$NORMAL"
+  echo -e "$index: $2"
+}
+
+open_page() {
+  # This function is used for opening a page in the browser
+  if ! program_exists "xdg-open"; then
+    stederr_print "${RED}You have to install xdg-tools for using this option..."
+    error "Type 'sudo apt-get install -y xdg-utils' or similar in your distribution"
+  fi
+  xdg-open "$1"
 }
