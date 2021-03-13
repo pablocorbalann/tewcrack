@@ -1,19 +1,23 @@
 #!/bin/bash
-
 # This file is part of tewcrack: github.com/pblcc/tewcrack
 #
-# It's the main script of the application, for more information please
-# check the github page of this application.
+# Tewcrack is a small shell tool for running a Dictionary attack in an specific Wifi
+# network from your terminal. If you want to install Tewcrack, you can run the install.sh
+# script of this file
 #
-# For running this script use: sh tewcrack
-# 
-# !Please do not touch the rest of the script
-
-# declarate some constants
+# For running this script use:
+#
+#   bash tewcrack.sh <dict_route>
+#
+# the route of the dictionary attack, <dict_route> where all the paIf you want you can
+# modify it from one of the constants above. By default his dictionary consists of the 1000
+# most used passwords.
+DICT_FILE_ROUTE="dict.txt"
 PROGRAM_FILE="tewcrack.sh"
 OPTIONS_FILE_ROUTE="options.txt"
 GITHUB_REPO="https://github.com/pablocorbalann/tewcrack"
-TWITTER_PROFILE="https://twitter.com/pablocorbalann"
+
+# PLEASE DO NOT TOUCH THE REST OF THE SCRIPT IF YOU DONT KNOW WHAT YOU ARE DOING 
 
 # declarate some functions that have to be used
 . core/funcs.sh
@@ -42,6 +46,16 @@ case $option in
   "1")
     sh core/about.sh
     ;;
+  "2")
+    # Check if the user passed a route using parameters (located at $1)
+    if [ "$#" -eq 0 ]; then
+      warn "You have not provided a route for the dictionary attack file..."
+    else
+      DICT_FILE_ROUTE="$1"
+    fi
+    ok "We are going to load the dictionary from ${DICT_FILE_ROUTE}..."
+    # Now call the start script with this route
+    ;;
   "3")
     open_page "$GITHUB_REPO"
     ;;
@@ -52,5 +66,6 @@ case $option in
 esac
 
 if program_exists "bash"; then
-  bash "${PROGRAM_FILE}"
+  # bash "${PROGRAM_FILE}"
+  ok "Thanks for using Tewcrack..."
 fi
