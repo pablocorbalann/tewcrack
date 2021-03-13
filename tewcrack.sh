@@ -16,6 +16,7 @@ DICT_FILE_ROUTE="dict.txt"
 PROGRAM_FILE="tewcrack.sh"
 OPTIONS_FILE_ROUTE="options.txt"
 GITHUB_REPO="https://github.com/pablocorbalann/tewcrack"
+TWITTER_PROFILE="https://twitter.com/pablocorbalann"
 
 # PLEASE DO NOT TOUCH THE REST OF THE SCRIPT IF YOU DONT KNOW WHAT YOU ARE DOING 
 
