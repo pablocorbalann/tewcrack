@@ -12,7 +12,7 @@
 # the route of the dictionary attack, <dict_route> where all the paIf you want you can
 # modify it from one of the constants above. By default his dictionary consists of the 1000
 # most used passwords.
-DICT_FILE_ROUTE="dict.txt"
+DICT_FILE_ROUTE="dict"
 PROGRAM_FILE="tewcrack.sh"
 OPTIONS_FILE_ROUTE="options.txt"
 GITHUB_REPO="https://github.com/pablocorbalann/tewcrack"
@@ -49,25 +49,36 @@ case $option in
     ;;
   "2")
     # Check if the user passed a route using parameters (located at $1)
-    if [ "$#" -eq 0 ]; then
-      warn "You have not provided a route for the dictionary attack file..."
+    if [ -z "$1" ]; then 
+      warn "No argument supplied to the attack core..."
+      read -p "Type the route of the dictionary file ('N' to cancell): " dattack
+      if [ "$DICT_FILE_ROUTE" == "N" ]; then
+        error "Attack cancelled..."
+        exit
+      fi
     else
-      DICT_FILE_ROUTE="$1"
+      dattack="$DICT_FILE_ROUTE"
     fi
-    ok "We are going to load the dictionary from ${DICT_FILE_ROUTE}..."
-    # Now call the start script with this route
+    # ask the user to confirm the attack
+    read -p "Are you sure you would like to run the attack? (y/N): " confirmation
+    if [ $confirmation == "y" ]; then
+      # Now call the start script with this route
+      ok "Running the attack from $dattack..."
+      sleep 2.0
+    fi
     ;;
   "3")
     open_page "$GITHUB_REPO"
     ;;
   "4")
     open_page "$TWITTER_PROFILE"
+    clear
     ;;
   *) error "The option has not been found...";;
 esac
 
 if program_exists "bash"; then
-  bash "$PROGRAM_FILE"
+  bash "$PROGRAM_FILE" $DICT_FILE_ROUTE
 fi
 
 clear
