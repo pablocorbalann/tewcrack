@@ -67,6 +67,9 @@ case $option in
 esac
 
 if program_exists "bash"; then
-  # bash "${PROGRAM_FILE}"
-  ok "Thanks for using Tewcrack..."
+  bash "$PROGRAM_FILE"
 fi
+
+clear
+sh core/title.sh
+ok "Thanks for using tewcrack..."
