@@ -15,6 +15,7 @@
 #
 # Please, modify this constants if you consider it
 PROGRAM_FILE="tewcrack.sh"
+NETWORK_GENERATED_FILE="networks.txt"
 OPTIONS_FILE_ROUTE="options.txt"
 GITHUB_REPO="https://github.com/pablocorbalann/tewcrack"
 TWITTER_PROFILE="https://twitter.com/pablocorbalann"
@@ -67,7 +68,7 @@ case $option in
     ok "Running the attack from '$1'"
     read -p "Are you sure you want to run this attack? (y/N): " confirmation
     if [ $confirmation == "y" ]; then 
-      bash core/run.sh $1
+      bash core/run.sh $1 $NETWORK_GENERATED_FILE
     fi
     sleep 1.0
     ;;
@@ -85,7 +86,7 @@ case $option in
   *) error "The option has not been found...";;
 esac
 
-bash "$PROGRAM_FILE" $DICT_FILE_ROUTE
+bash $PROGRAM_FILE $1 $NETWORK_GENERATED_FILE
 
 clear
 sh core/title.sh
