@@ -2,3 +2,4 @@ What is Tewcrack?
 Start the Tewcrack core
 View the GitHub repository
 Follow me on Twitter!
+Exit the application

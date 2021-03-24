@@ -24,11 +24,11 @@ TWITTER_PROFILE="https://twitter.com/pablocorbalann"
 # declarate some functions that have to be used
 . core/funcs.sh
 
-if ! program_exist "bash"; then
+if ! program_exists "bash"; then
   error "The program can't find the bash interpreter..."
 fi
 
-if ! program_exist "sh"; then 
+if ! program_exists "sh"; then 
   error "The program can't find the shell interpreter..."
 fi
 
@@ -78,12 +78,14 @@ case $option in
     open_page "$TWITTER_PROFILE"
     clear
     ;;
+  "5")
+    ok "See you soon!"
+    exit 
+    ;;
   *) error "The option has not been found...";;
 esac
 
-if program_exists "bash"; then
-  bash "$PROGRAM_FILE" $DICT_FILE_ROUTE
-fi
+bash "$PROGRAM_FILE" $DICT_FILE_ROUTE
 
 clear
 sh core/title.sh

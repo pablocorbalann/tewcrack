@@ -6,4 +6,15 @@
 # run this script, then you can select the second option and that's it!
 # Good luck and use the script at your own risk!
 # For more information check out: github.com/pablocorbalann/tewcrack.sh
-echo "run"
+
+. funcs.sh
+
+if ! program_exists "nmcli"; then
+  error "For running this program you need the network manager command line (nmcli), and it has not been found in your computer, please install it..."
+fi
+
+# If the user has reached this point of the script without any problems, it means that
+# all the programs that are needed to be installed actually are, remember you can automate
+# this process using: bash dependencies.sh
+wifi="$(nmcli dev wifi)"
+echo $wifi
