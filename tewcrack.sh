@@ -9,10 +9,11 @@
 #
 #   bash tewcrack.sh <dict_route>
 #
-# the route of the dictionary attack, <dict_route> where all the paIf you want you can
-# modify it from one of the constants above. By default his dictionary consists of the 1000
-# most used passwords.
-DICT_FILE_ROUTE="dict"
+# Requirements:
+#   - bash interpreter 'bash'
+#   - shell interpreter 'sh'
+#
+# Please, modify this constants if you consider it
 PROGRAM_FILE="tewcrack.sh"
 OPTIONS_FILE_ROUTE="options.txt"
 GITHUB_REPO="https://github.com/pablocorbalann/tewcrack"
@@ -22,6 +23,14 @@ TWITTER_PROFILE="https://twitter.com/pablocorbalann"
 
 # declarate some functions that have to be used
 . core/funcs.sh
+
+if ! program_exist "bash"; then
+  error "The program can't find the bash interpreter..."
+fi
+
+if ! program_exist "sh"; then 
+  error "The program can't find the shell interpreter..."
+fi
 
 # start of the script
 clear
@@ -50,22 +59,17 @@ case $option in
   "2")
     # Check if the user passed a route using parameters (located at $1)
     if [ -z "$1" ]; then 
-      warn "No argument supplied to the attack core..."
-      read -p "Type the route of the dictionary file ('N' to cancell): " dattack
-      if [ "$DICT_FILE_ROUTE" == "N" ]; then
-        error "Attack cancelled..."
-        exit
-      fi
-    else
-      dattack="$DICT_FILE_ROUTE"
+      error "You have not supplied the route of the dictionary attack..."
+      exit 1
     fi
-    # ask the user to confirm the attack
-    read -p "Are you sure you would like to run the attack? (y/N): " confirmation
-    if [ $confirmation == "y" ]; then
-      # Now call the start script with this route
-      ok "Running the attack from $dattack..."
-      sleep 2.0
+    # If the user has passed a route using the cli parameters, we ask for a confirmation and 
+    # then we run the attack
+    ok "Running the attack from '$1'"
+    read -p "Are you sure you want to run this attack? (y/N): " confirmation
+    if [ $confirmation == "y" ]; then 
+      bash core/run.sh $1
     fi
+    sleep 1.0
     ;;
   "3")
     open_page "$GITHUB_REPO"
