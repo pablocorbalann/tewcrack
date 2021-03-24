@@ -28,6 +28,7 @@ done < "${2}"
 # Now we have a list with wifi networks stored at 'networks'
 nets_size=${#networks[@]}
 ok "We have found $nets_size networks you can attack..."
+echo "    IN-USE  SSID           MODE   CHAN  RATE        SIGNAL  BARS  SECURITY"
 for (( i=0; i<nets_size; i++)); do
   print_option "${i+1}" "${networks[$i]}"
   counter+=1
