@@ -25,8 +25,11 @@ while read -r line; do
   networks+=("${line}")
 done < "${2}"
 
-echo "$networks"
-
+# Now we have a list with wifi networks stored at 'networks', but this list is a bit messy so we
+# have to do two things:
+#   - split it by spaces
+#   - remove empty spaces
+# TODO
 # Clean all the files and all of that stuff
 ok "The attack has ended, please give us a couple of seconds to clean all the mess!"
 rm -rf $2

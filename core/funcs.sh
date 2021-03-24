@@ -73,3 +73,8 @@ open_page() {
   fi
   xdg-open "$1"
 }
+
+split_by() {
+  # Splits a text from a given character
+  echo $1 | tr $2 "\n"
+}
