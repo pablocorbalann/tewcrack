@@ -40,8 +40,31 @@ if [ $target_index == "0" ]; then
   exit 0
 fi
 
-target_text="${networks[$target_index]}"
- 
+target_text="${networks[$target_index - 1]}"
+echo "We are going to attack the following wifi network:"
+echo "${target_text}"
+read -p "Is this correct? (y/N): " confirm_attack
+
+if [ $confirm_attack != "y" ]; then
+  ok "See you soon!"
+  exit 0
+fi
+
+ok "Now we are going to load the dictionary attack"
+echo "This could take several minutes, dependding on the size of the file"
+
+if [ ! -f $1 ]; then
+  error "Sorry, but the computer can't find the dictionary attack file: '$1'"
+fi
+
+echo "Loading the passwords of the file..."
+passwords=()
+while read -r line; do
+  passwords+=("${line}")
+done < "${1}"
+passwords_size=${#passwords[@]}
+echo "We have loaded $passwords_size passwords to try"
+
 # Clean all the files and all of that stuff
 ok "The attack has ended, please give us a couple of seconds to clean all the mess!"
 rm -rf $2
