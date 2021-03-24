@@ -25,12 +25,23 @@ while read -r line; do
   networks+=("${line}")
 done < "${2}"
 
-# Now we have a list with wifi networks stored at 'networks', but this list is a bit messy so we
-# have to do two things:
-#   - split it by spaces
-#   - remove empty spaces
-# TODO
+# Now we have a list with wifi networks stored at 'networks'
+nets_size=${#networks[@]}
+ok "We have found $nets_size networks you can attack..."
+for (( i=0; i<nets_size; i++)); do
+  print_option "${i+1}" "${networks[$i]}"
+  counter+=1
+done
+
+read -p "Type the index of the network you want to attack, or type '0' to cancell: " target_index
+if [ $target_index == "0" ]; then 
+  ok "Attack cancelled"
+  exit 0
+fi
+
+target_text="${networks[$target_index]}"
+ 
 # Clean all the files and all of that stuff
 ok "The attack has ended, please give us a couple of seconds to clean all the mess!"
 rm -rf $2
-sleep 1.5
+sleep 2.0
