@@ -1,18 +1,17 @@
 #!/bin/bash
-
-# This file is part of tewcrack: github.com/pblcc/tewcrack
+# This file is part of tewcrack: github.com/pablocorbalann/tewcrack
 #
 # It's the script that has to be used for installing the application
 # in your computer or in termux.
 #
-# Run: sh install.sh
+# Run: bash install.sh
 #
-# !Please do not touch the script
+# !Please do not touch the script!
 
 # configuration variables
-path="${HOME}/.tewcrack/"
-new_path="${HOME}/.tewcrack-old/"
-bin_dir="${HOME}/.local/bin/"
+path="$HOME/.tewcrack/"
+new_path="$HOME/.tewcrack-old/"
+bin_dir="$HOME/.local/bin/"
 executable_name="tewcrack"
 
 # include the functions

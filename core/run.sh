@@ -47,7 +47,7 @@ fi
 
 target_text="${networks[$target_index]}"
 echo "We are going to attack the following wifi network:"
-echo "${target_text}"
+echo "$target_text"
 read -p "Is this correct? (y/N): " confirm_attack
 
 if [ $confirm_attack != "y" ]; then
@@ -69,6 +69,26 @@ while read -r line; do
 done < "${1}"
 passwords_size=${#passwords[@]}
 echo "We have loaded $passwords_size passwords to try"
+
+# separate the target in values, so we have a list composed of:
+# in use - ssid - mode - chan - rate - signal - bars - security
+target_values=$(echo $target_text | tr " " "\n")
+# we are going to store the information in a dictionary
+declare -A target
+target["in-use"]="> $target_values[0]"
+target["ssid"]="> $target_values[1]"
+target["mode"]="> $target_values[2]"
+target["chan"]="> $target_values[3]"
+target["rate"]="> $target_values[4]"
+target["signal"]="> $target_values[5]"
+target["bars"]="> $target_values[6]"
+target["security"]="> $target_values[7]"
+
+for i in "${!target[@]}"
+do
+    echo "key  : $i"
+      echo "value: ${array[$i]}"
+    done
 
 # Clean all the files and all of that stuff
 ok "The attack has ended, please give us a couple of seconds to clean all the mess!"
