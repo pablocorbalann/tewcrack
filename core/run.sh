@@ -9,6 +9,9 @@
 
 . core/funcs.sh
 
+# constants
+CANCELL_KEY="q"
+
 if ! program_exists "nmcli"; then
   error "For running this program you need the network manager command line (nmcli), and it has not been found in your computer, please install it..."
 fi
@@ -28,19 +31,21 @@ done < "${2}"
 # Now we have a list with wifi networks stored at 'networks'
 nets_size=${#networks[@]}
 ok "We have found $nets_size networks you can attack..."
-echo "    IN-USE  SSID           MODE   CHAN  RATE        SIGNAL  BARS  SECURITY"
+
+# display the networks
+echo "     IN-USE              SSID                             MODE   CHAN  RATE        SIGNAL  BARS  SECURITY"
 for (( i=0; i<nets_size; i++)); do
-  print_option "${i+1}" "${networks[$i]}"
+  print_option "$i" "${networks[$i]}"
   counter+=1
 done
 
-read -p "Type the index of the network you want to attack, or type '0' to cancell: " target_index
-if [ $target_index == "0" ]; then 
+read -p "Type the index of the network you want to attack, or type '$CANCELL_KEY' to cancell: " target_index
+if [ $target_index == "$CANCELL_KEY" ]; then 
   ok "Attack cancelled"
   exit 0
 fi
 
-target_text="${networks[$target_index - 1]}"
+target_text="${networks[$target_index]}"
 echo "We are going to attack the following wifi network:"
 echo "${target_text}"
 read -p "Is this correct? (y/N): " confirm_attack
