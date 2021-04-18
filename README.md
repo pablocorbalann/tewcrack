@@ -1,13 +1,18 @@
+### Index
+- [Running tewcrack](#running-tewcrack)
+
+---
+### Running tewcrack
+Run the following commands
 ```shell
 # Clone the repository to your computer using git
-git clone https://github.com/pblcc/tewcrack.git
+git clone https://github.com/pablocorbalann/tewcrack.git
 # Move inside the repository
 cd tewcrack/
 # Install tewcrack to your computer
-sh install.sh
-# Now you can run the program
-tewcrack
+bash tewcrack.sh
 ```
+Or in the same line:
 ```shell
-git clone https://github.com/pblcc/tewcrack.git && cd tewcrack/ && sh install.sh && tewcrack
+git clone https://github.com/pablocorbalann/tewcrack.git && cd tewcrack/ && bash tewcrack.sh
 ```
