@@ -17,8 +17,9 @@
 PROGRAM_FILE="tewcrack.sh"
 NETWORK_GENERATED_FILE="networks.txt"
 OPTIONS_FILE_ROUTE="options.txt"
-GITHUB_REPO="https://github.com/pablocorbalann/tewcrack"
-TWITTER_PROFILE="https://twitter.com/pablocorbalann"
+SOCIAL_USERNAME="pablocorbalann"
+GITHUB_REPO="https://github.com/$SOCIAL_USERNAME/tewcrack"
+TWITTER_PROFILE="https://twitter.com/$SOCIAL_USERNAME"
 
 # PLEASE DO NOT TOUCH THE REST OF THE SCRIPT IF YOU DONT KNOW WHAT YOU ARE DOING 
 
@@ -73,10 +74,11 @@ case $option in
     sleep 1.0
     ;;
   "3")
-    open_page "$GITHUB_REPO"
+    open_page "$GITHUB_REPO" "@$SOCIAL_USERNAME/tewcrack" 
+    clear
     ;;
   "4")
-    open_page "$TWITTER_PROFILE"
+    open_page "$TWITTER_PROFILE"  "@$SOCIAL_USERNAME"
     clear
     ;;
   "5")

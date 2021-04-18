@@ -69,7 +69,8 @@ open_page() {
   # This function is used for opening a page in the browser
   if ! program_exists "xdg-open"; then
     stederr_print "${RED}You have to install xdg-tools for using this option..."
-    error "Type 'sudo apt-get install -y xdg-utils' or similar in your distribution"
+  else
+    echo "$2"
   fi
   xdg-open "$1"
 }
